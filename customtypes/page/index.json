@@ -16,7 +16,7 @@
       "title": {
         "type": "StructuredText",
         "config": {
-          "label": "Title",
+          "label": "Fizzi",
           "placeholder": "",
           "allowTargetBlank": true,
           "single": "heading1"
@@ -27,7 +27,7 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "rich_text": {
+            "fizzi": {
               "type": "SharedSlice"
             }
           }
