@@ -224,14 +224,14 @@ export interface FizziSliceDefaultPrimary {
   second_heading: prismic.RichTextField;
 
   /**
-   * Second  Body field in *Hero → Default → Primary*
+   * Second Body field in *Hero → Default → Primary*
    *
    * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: fizzi.default.primary.second_headin
+   * - **Placeholder**: text goes here!
+   * - **API ID Path**: fizzi.default.primary.second_body
    * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
-  second_headin: prismic.RichTextField;
+  second_body: prismic.RichTextField;
 }
 
 /**

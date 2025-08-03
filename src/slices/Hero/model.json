@@ -74,13 +74,13 @@
             "single": "heading2"
           }
         },
-        "second_headin": {
+        "second_body": {
           "type": "StructuredText",
           "config": {
-            "label": "Second  Body",
-            "placeholder": "",
+            "label": "Second Body",
+            "placeholder": "text goes here!",
             "allowTargetBlank": true,
-            "multi": "paragraph"
+            "single": "heading2"
           }
         }
       },

@@ -84,13 +84,13 @@
 					}
 				]
 			},
-			"second_headin": {
+			"second_body": {
 				"__TYPE__": "StructuredTextContent",
 				"value": [
 					{
-						"type": "paragraph",
+						"type": "heading2",
 						"content": {
-							"text": "Fugiat veniam labore ullamco deserunt anim magna cupidatat quis. Amet esse anim ea."
+							"text": "Replace"
 						}
 					}
 				]
