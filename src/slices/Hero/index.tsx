@@ -10,6 +10,8 @@ import { TextSplitter } from "@/components/TextSpliter";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { View } from "@react-three/drei";
+import Scene from "./Scene";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -52,7 +54,7 @@ const Hero: FC<HeroProps> = ({ slice }) => {
         start: "top top",
         end: "bottom bottom",
         scrub: 1.5,
-        markers: true,
+        // markers: true, ///mark on top and bottom
       },
     });
     scrollTl
@@ -88,6 +90,9 @@ const Hero: FC<HeroProps> = ({ slice }) => {
       data-slice-variation={slice.variation}
       className="hero opacity-0"
     >
+      <View className="hero-scene pointer-events-none sticky top-0 z-50 -mt-[100vh] hidden h-screen w-screen md:block">
+        <Scene />
+      </View>
       <div className="grid">
         <div className="grid h-screen place-items-center">
           <div className="gird auto-rows-min place-items-center text-center">
