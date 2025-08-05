@@ -9,7 +9,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { View } from "@react-three/drei";
 import { Bounded } from "@/components/Bounded";
 import Button from "@/components/Button";
-
 import Scene from "./Scene";
 import { Bubbles } from "./Bubbles";
 import { useStore } from "@/hooks/useStore";
@@ -117,12 +116,12 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
       <div className="grid">
         <div className="grid h-screen place-items-center">
           <div className="grid auto-rows-min place-items-center text-center">
-            <h1 className="hero-header text-7xl font-black uppercase leading-[.8] text-orange-500 md:text-[9rem] lg:text-[13rem]">
-              <TextSplitter
-                text={asText(slice.primary.heading)}
-                wordDisplayStyle="block"
-                className="hero-header-word"
-              />
+            <h1 className="hero-header mt-20 whitespace-pre-line text-5xl font-black uppercase leading-[0.8] text-orange-500 sm:text-6xl md:text-[8rem] lg:text-[13rem]">
+              {"Soft\nDr/nks/X".split("\n").map((line, index) => (
+                <span key={index} className="block">
+                  {line}
+                </span>
+              ))}
             </h1>
             <div className="hero-subheading mt-12 text-5xl font-semibold text-sky-950 lg:text-6xl">
               <PrismicRichText field={slice.primary.subheading} />
