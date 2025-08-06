@@ -5,4 +5,5 @@ import dynamic from "next/dynamic";
 export const components = {
   fizzi: dynamic(() => import("./Hero")),
   sky_dive: dynamic(() => import("./SkyDive")),
+  carousel: dynamic(() => import("./Carousel")),
 };

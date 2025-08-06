@@ -1,0 +1,31 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"heading": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Valley"
+						}
+					}
+				]
+			},
+			"price_copy": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Nostrud laboris culpa ex culpa sunt sint anim nostrud dolor adipisicing consectetur anim aliquip. Aliqua eiusmod elit occaecat eiusmod sunt ut aute et proident nisi consequat. Sit mollit reprehenderit fugiat aliquip qui aute."
+						}
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]

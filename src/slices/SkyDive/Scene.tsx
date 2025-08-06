@@ -11,14 +11,17 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import FloatingCan from "@/components/FloatingCan";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 
+// Đăng ký plugin
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
+// Props component
 type SkyDiveProps = {
-  sentence: string | null;
-  flavor: Content.SkyDiveSliceDefaultPrimary["flavor"];
+  sentence: string | null; // Câu để hiển thị 3D text
+  flavor: Content.SkyDiveSliceDefaultPrimary["flavor"]; // Hương vị (tạm thời chưa dùng)
 };
 
 export default function Scene({ sentence, flavor }: SkyDiveProps) {
+  // Các ref dùng để điều khiển object 3D trong scene
   const groupRef = useRef<THREE.Group>(null);
   const canRef = useRef<THREE.Group>(null);
   const cloud1Ref = useRef<THREE.Group>(null);
@@ -26,17 +29,20 @@ export default function Scene({ sentence, flavor }: SkyDiveProps) {
   const cloudsRef = useRef<THREE.Group>(null);
   const wordsRef = useRef<THREE.Group>(null);
 
+  // Góc nghiêng khi xuất hiện can
   const ANGLE = 75 * (Math.PI / 180);
 
+  // Tính vị trí theo trục x, y theo góc nghiêng
   const getXPosition = (distance: number) => distance * Math.cos(ANGLE);
   const getYPosition = (distance: number) => distance * Math.sin(ANGLE);
-
   const getXYPositions = (distance: number) => ({
     x: getXPosition(distance),
     y: getYPosition(-1 * distance),
   });
 
+  // Animation
   useGSAP(() => {
+    // Kiểm tra ref sẵn sàng
     if (
       !cloudsRef.current ||
       !canRef.current ||
@@ -46,18 +52,15 @@ export default function Scene({ sentence, flavor }: SkyDiveProps) {
     )
       return;
 
-    // Set initial positions
+    // Đặt vị trí ban đầu
     gsap.set(cloudsRef.current.position, { z: 10 });
-    gsap.set(canRef.current.position, {
-      ...getXYPositions(-4),
-    });
-
+    gsap.set(canRef.current.position, getXYPositions(-4));
     gsap.set(
       wordsRef.current.children.map((word) => word.position),
       { ...getXYPositions(7), z: 2 },
     );
 
-    // Spinning can
+    // Xoay lon vô hạn
     gsap.to(canRef.current.rotation, {
       y: Math.PI * 2,
       duration: 1.7,
@@ -65,7 +68,7 @@ export default function Scene({ sentence, flavor }: SkyDiveProps) {
       ease: "none",
     });
 
-    // Infinite cloud movement
+    // Cloud chuyển động lặp vô hạn
     const DISTANCE = 15;
     const DURATION = 6;
 
@@ -90,9 +93,10 @@ export default function Scene({ sentence, flavor }: SkyDiveProps) {
       duration: DURATION,
     });
 
+    // ScrollTrigger timeline (kéo xuống sẽ trigger animation)
     const scrollTl = gsap.timeline({
       scrollTrigger: {
-        trigger: ".skydive",
+        trigger: ".skydive", // DOM selector
         pin: true,
         start: "top top",
         end: "+=2000",
@@ -100,9 +104,10 @@ export default function Scene({ sentence, flavor }: SkyDiveProps) {
       },
     });
 
+    // Chuỗi animation khi scroll
     scrollTl
       .to("body", {
-        backgroundColor: "#C0F0F5",
+        backgroundColor: "#C0F0F5", // Đổi màu nền
         overwrite: "auto",
         duration: 0.1,
       })
@@ -134,7 +139,7 @@ export default function Scene({ sentence, flavor }: SkyDiveProps) {
 
   return (
     <group ref={groupRef}>
-      {/* Can */}
+      {/* Lon nước bay bay */}
       <group rotation={[0, 0, 0.5]}>
         <FloatingCan
           ref={canRef}
@@ -143,28 +148,30 @@ export default function Scene({ sentence, flavor }: SkyDiveProps) {
           floatIntensity={3}
           floatSpeed={3}
         >
+          {/* Ánh sáng đèn điểm */}
           <pointLight intensity={30} color="#8C0413" decay={0.6} />
         </FloatingCan>
       </group>
 
-      {/* Clouds */}
+      {/* Mây */}
       <Clouds ref={cloudsRef}>
         <Cloud ref={cloud1Ref} bounds={[10, 10, 2]} />
         <Cloud ref={cloud2Ref} bounds={[10, 10, 2]} />
       </Clouds>
 
-      {/* Text */}
+      {/* Text 3D */}
       <group ref={wordsRef}>
         {sentence && <ThreeText sentence={sentence} color="#F97315" />}
       </group>
 
-      {/* Lights */}
+      {/* Ánh sáng tổng thể + môi trường */}
       <ambientLight intensity={2} color="#9DDEFA" />
       <Environment files="/hdr/field.hdr" environmentIntensity={1.5} />
     </group>
   );
 }
 
+// Component để hiển thị text 3D từng chữ cái
 function ThreeText({
   sentence,
   color = "white",
@@ -173,7 +180,6 @@ function ThreeText({
   color?: string;
 }) {
   const words = sentence.toUpperCase().split(" ");
-
   const material = new THREE.MeshLambertMaterial();
   const isDesktop = useMediaQuery("(min-width: 950px)", true);
 

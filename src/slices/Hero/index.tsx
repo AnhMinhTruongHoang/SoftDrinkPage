@@ -1,5 +1,19 @@
 "use client";
 
+/*
+
+  - Đây là component Hero dùng cho một slice (phần) giao diện trong Next.js, sử dụng Prismic CMS để lấy dữ liệu.
+  - Component này sử dụng nhiều thư viện như gsap (animation), drei (three.js), và các hook tùy chỉnh.
+  - Khi trang tải, nếu đã sẵn sàng và là desktop, các hiệu ứng hoạt hình sẽ chạy:
+    + introTl: hiệu ứng lần lượt cho header, subheading, body, và nút bấm (xuất hiện, phóng to/thu nhỏ, chuyển động).
+    + scrollTl: hiệu ứng khi cuộn trang, đổi màu nền và animate các chữ cái, body bên cạnh hình ảnh.
+  - Layout chia thành hai phần:
+    + Phần trên là hiệu ứng 3D và các bong bóng (chỉ hiện trên desktop).
+    + Phần dưới là nội dung tiêu đề, mô tả, nút, hình ảnh và heading phụ.
+  - Sử dụng các component như Bounded để bọc nội dung, Button để tạo nút bấm, PrismicRichText để render dữ liệu từ Prismic.
+  - TextSplitter dùng để tách từng chữ của heading phụ để hiệu ứng animate từng chữ cái.
+*/
+
 import { asText, Content } from "@prismicio/client";
 import { PrismicNextImage } from "@prismicio/next";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
@@ -18,12 +32,12 @@ import { TextSplitter } from "@/components/TextSpliter";
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 /**
- * Props for `Hero`.
+ * Props cho component `Hero`.
  */
 export type HeroProps = SliceComponentProps<Content.FizziSlice>;
 
 /**
- * Component for "Hero" Slices.
+ * Component cho Slice "Hero".
  */
 const Hero = ({ slice }: HeroProps): JSX.Element => {
   const ready = useStore((state) => state.ready);
@@ -33,6 +47,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
     () => {
       if (!ready && isDesktop) return;
 
+      // Hiệu ứng xuất hiện khi tải
       const introTl = gsap.timeline();
 
       introTl
@@ -62,6 +77,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
           duration: 0.6,
         });
 
+      // Hiệu ứng khi cuộn trang
       const scrollTl = gsap.timeline({
         scrollTrigger: {
           trigger: ".hero",
@@ -117,6 +133,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
         <div className="grid h-screen place-items-center">
           <div className="grid auto-rows-min place-items-center text-center">
             <h1 className="hero-header mt-20 whitespace-pre-line text-5xl font-black uppercase leading-[0.8] text-orange-500 sm:text-6xl md:text-[8rem] lg:text-[13rem]">
+              {/* Tách từng dòng của tiêu đề chính ra thành các span */}
               {"Soft\nDr/nks/X".split("\n").map((line, index) => (
                 <span key={index} className="block">
                   {line}
@@ -144,6 +161,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
           />
           <div>
             <h2 className="text-side-heading text-balance text-6xl font-black uppercase text-sky-950 lg:text-8xl">
+              {/* Dùng TextSplitter để tách chữ cho hiệu ứng */}
               <TextSplitter text={asText(slice.primary.second_heading)} />
             </h2>
             <div className="text-side-body mt-4 max-w-xl text-balance text-xl font-normal text-sky-950">
