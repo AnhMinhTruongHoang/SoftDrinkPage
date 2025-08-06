@@ -3,7 +3,8 @@
 import dynamic from "next/dynamic";
 
 export const components = {
+  alternating_text: dynamic(() => import("./AlternatingText")),
+  carousel: dynamic(() => import("./Carousel")),
   fizzi: dynamic(() => import("./Hero")),
   sky_dive: dynamic(() => import("./SkyDive")),
-  carousel: dynamic(() => import("./Carousel")),
 };
