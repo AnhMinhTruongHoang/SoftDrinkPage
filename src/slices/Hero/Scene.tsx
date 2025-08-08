@@ -117,16 +117,12 @@ export default function Scene({}: Props) {
       <group ref={can1GroupRef}>
         <FloatingCan
           ref={can1Ref}
-          flavor="blackCherry"
+          flavor="lemonLime"
           floatSpeed={FLOAT_SPEED}
         />
       </group>
       <group ref={can2GroupRef}>
-        <FloatingCan
-          ref={can2Ref}
-          flavor="lemonLime"
-          floatSpeed={FLOAT_SPEED}
-        />
+        <FloatingCan ref={can2Ref} flavor="charizar" floatSpeed={FLOAT_SPEED} />
       </group>
 
       <FloatingCan ref={can3Ref} flavor="grape" floatSpeed={FLOAT_SPEED} />

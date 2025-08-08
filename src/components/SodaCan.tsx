@@ -15,6 +15,7 @@ const flavorTextures = {
   strawberryLemonade: "/labels/strawberry.png",
   watermelon: "/labels/watermelon.png",
   pikachu: "/labels/Pikachu.lemonade.png",
+  charizar: "/labels/Charizar.Soda.png",
 };
 
 // Tạo vật liệu kim loại dùng cho phần thân và nắp lon
@@ -49,6 +50,7 @@ export function SodaCan({
   labels.grape.flipY = false;
   labels.lemonLime.flipY = false;
   labels.pikachu.flipY = false;
+  labels.charizar.flipY = false;
 
   // Lấy texture tương ứng với flavor được chọn
   const label = labels[flavor];

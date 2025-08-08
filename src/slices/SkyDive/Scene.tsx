@@ -143,7 +143,7 @@ export default function Scene({ sentence, flavor }: SkyDiveProps) {
       <group rotation={[0, 0, 0.5]}>
         <FloatingCan
           ref={canRef}
-          flavor={"grape"}
+          flavor={"charizar"}
           rotationIntensity={0}
           floatIntensity={3}
           floatSpeed={3}
