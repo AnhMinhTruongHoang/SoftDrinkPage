@@ -127,9 +127,14 @@ const Carousel = ({ slice }: CarouselProps): JSX.Element => {
             environmentRotation={[0, 3, 0]}
           />
           {/* Directional Light – chỉnh riêng cho Pikachu */}
-          {["pikachu", "charizar", "aurora", "celebi", "pixel"].includes(
-            FLAVORS[currentFlavorIndex].flavor!,
-          ) ? (
+          {[
+            "pikachu",
+            "charizar",
+            "aurora",
+            "celebi",
+            "pixel",
+            "blackPink",
+          ].includes(FLAVORS[currentFlavorIndex].flavor!) ? (
             <directionalLight intensity={1} position={[0, 1.5, 1]} />
           ) : (
             <directionalLight intensity={6} position={[0, 1, 1]} />
