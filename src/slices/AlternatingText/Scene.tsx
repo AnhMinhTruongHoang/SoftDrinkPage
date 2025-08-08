@@ -73,7 +73,7 @@ export default function Scene({}: Props) {
       position-x={isDesktop ? 1 : 0}
       rotation-y={isDesktop ? -0.3 : 0}
     >
-      <FloatingCan flavor="strawberryLemonade" />
+      <FloatingCan flavor="blackCherry" />
       <Environment files={"/hdr/lobby.hdr"} environmentIntensity={1.5} />
     </group>
   );

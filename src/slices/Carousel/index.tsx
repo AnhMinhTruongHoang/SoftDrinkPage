@@ -30,6 +30,8 @@ const FLAVORS: {
   { flavor: "pikachu", color: "#FADB32", name: "Pikachu Lemonade" },
   { flavor: "charizar", color: "#2760CA", name: "Charizar Mega Soda" },
   { flavor: "aurora", color: "#22C48B", name: "Aurora Soda" },
+  { flavor: "celebi", color: "#bde0cd", name: "Celebi Soda" },
+  { flavor: "pixel", color: "pink", name: "Pixel Soda" },
 
   {
     flavor: "strawberryLemonade",
@@ -124,7 +126,7 @@ const Carousel = ({ slice }: CarouselProps): JSX.Element => {
             environmentRotation={[0, 3, 0]}
           />
           {/* Directional Light – chỉnh riêng cho Pikachu */}
-          {["pikachu", "charizar", "aurora"].includes(
+          {["pikachu", "charizar", "aurora", "celebi", "pixel"].includes(
             FLAVORS[currentFlavorIndex].flavor!,
           ) ? (
             <directionalLight intensity={1} position={[0, 1.5, 1]} />
