@@ -32,6 +32,7 @@ const FLAVORS: {
   { flavor: "aurora", color: "#22C48B", name: "Aurora Soda" },
   { flavor: "celebi", color: "#bde0cd", name: "Celebi Soda" },
   { flavor: "pixel", color: "pink", name: "Pixel Soda" },
+  { flavor: "blackPink", color: "pink", name: "BlackPink Soda" },
 
   {
     flavor: "strawberryLemonade",

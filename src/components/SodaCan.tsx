@@ -19,6 +19,7 @@ const flavorTextures = {
   aurora: "/labels/Aurora.Soda.png",
   celebi: "/labels/Celebi.soda.png",
   pixel: "/labels/Pixel.soda.png",
+  blackPink: "/labels/Black.Pink.png",
 };
 
 // Tạo vật liệu kim loại dùng cho phần thân và nắp lon
@@ -57,6 +58,7 @@ export function SodaCan({
   labels.aurora.flipY = false;
   labels.celebi.flipY = false;
   labels.pixel.flipY = false;
+  labels.blackPink.flipY = false;
 
   // Lấy texture tương ứng với flavor được chọn
   const label = labels[flavor];
