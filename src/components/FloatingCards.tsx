@@ -8,7 +8,6 @@ import { Group } from "three"; // Group là nhóm đối tượng 3D trong Three
 // Kiểu props cho FloatingCards
 type FloatingCardsProps = {
   cardFace?: CardProps["cardFace"]; // Mặt trước thẻ (texture key)
-  backFace?: CardProps["backFace"]; // Mặt sau thẻ (texture key)
   scale?: number; // Tỉ lệ thu/phóng thẻ
   floatSpeed?: number; // Tốc độ bay lơ lửng
   rotationIntensity?: number; // Mức độ xoay khi lơ lửng
@@ -22,7 +21,6 @@ const FloatingCards = forwardRef<Group, FloatingCardsProps>(
   (
     {
       cardFace = "ZekromFront", // Mặc định dùng texture Zekrom
-      backFace = "backFace", // Mặt sau mặc định
       scale = 1, // Kích thước mặc định
       floatSpeed = 1.5, // Tốc độ lơ lửng mặc định
       rotationIntensity = 1, // Cường độ xoay mặc định
@@ -51,8 +49,8 @@ const FloatingCards = forwardRef<Group, FloatingCardsProps>(
         >
           {children}
           {/* Bao thẻ trong một group để xoay */}
-          <group rotation={[Math.PI / 2, Math.PI, 1]}>
-            <Cards cardFace={cardFace} backFace={backFace} scale={scale} />
+          <group rotation={[Math.PI / 2, 0, 0]}>
+            <Cards cardFace={cardFace} scale={scale} />
           </group>
         </Float>
       </group>

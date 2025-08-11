@@ -1,12 +1,13 @@
 "use client";
 
-import { Environment, Scroll } from "@react-three/drei";
+import { Environment, OrbitControls, Scroll } from "@react-three/drei";
 import { useRef } from "react";
 import { Group } from "three";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { Cards } from "@/components/Cards";
 import FloatingCards from "@/components/FloatingCards";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
