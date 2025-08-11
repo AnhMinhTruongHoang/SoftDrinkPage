@@ -2,8 +2,8 @@
 
 import { useGLTF, useTexture } from "@react-three/drei";
 
-// Tải trước model thẻ
-useGLTF.preload("/Models/Cards/CardGx.gltf");
+// Tải trước model thẻ (GLB)
+useGLTF.preload("/Models/Cards/ZekRomGX.glb");
 
 const CardTextures = {
   ZekromFront: "/labels/CardTextures/Zekrom.png",
@@ -22,20 +22,20 @@ export function Cards({
   scale = 1,
   ...props
 }: CardProps) {
-  // Load mô hình
-  const { nodes } = useGLTF("/Models/Cards/CardGx.gltf") as any;
+  // Load mô hình GLB
+  const { nodes } = useGLTF("/Models/Cards/ZekRomGX.glb") as any;
 
   // Load toàn bộ textures
   const textures = useTexture(CardTextures);
 
-  //Fix lỗi lật ngược texture
+  // Fix lỗi lật ngược texture nếu cần
   // Object.values(textures).forEach((tex) => {
   //   tex.flipY = false;
   // });
 
   const frontTexture = textures[cardFace];
   const backTexture = textures[backFace];
-  console.log(nodes);
+
   return (
     <group {...props} dispose={null} scale={scale}>
       {/* Mặt trước thẻ */}

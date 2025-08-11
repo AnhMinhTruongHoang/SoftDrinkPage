@@ -51,7 +51,7 @@ const FloatingCards = forwardRef<Group, FloatingCardsProps>(
         >
           {children}
           {/* Bao thẻ trong một group để xoay */}
-          <group rotation={[Math.PI / 2, Math.PI, 0]}>
+          <group rotation={[Math.PI / 2, Math.PI, 1]}>
             <Cards cardFace={cardFace} backFace={backFace} scale={scale} />
           </group>
         </Float>
