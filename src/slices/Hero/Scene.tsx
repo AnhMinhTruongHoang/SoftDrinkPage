@@ -8,6 +8,8 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useStore } from "@/hooks/useStore";
 import FloatingCan from "@/components/FloatingCan";
+import { SodaCanGLB } from "@/components/Cards";
+import PikachuFigure from "@/components/PikachuFigure";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 

@@ -5,7 +5,7 @@ import { useGLTF, useTexture } from "@react-three/drei";
 import * as THREE from "three"; // Import thư viện Three.js để tạo vật liệu, xử lý 3D
 
 // Tải trước mô hình lon nước để cải thiện hiệu năng
-useGLTF.preload("/Soda-can.gltf");
+useGLTF.preload("/Models/Cans/Soda-can.gltf");
 
 // Định nghĩa đường dẫn tới texture (nhãn lon) tương ứng với từng hương vị
 const flavorTextures = {
@@ -42,7 +42,7 @@ export function SodaCan({
   ...props
 }: SodaCanProps) {
   // Tải mô hình lon nước từ file GLTF
-  const { nodes } = useGLTF("/Soda-can.gltf");
+  const { nodes } = useGLTF("/Models/Cans/Soda-can.gltf");
 
   // Tải toàn bộ texture nhãn lon
   const labels = useTexture(flavorTextures);

@@ -28,8 +28,8 @@ type PickContentRelationshipFieldData<
       TSubRelationship["customtypes"],
       TLang
     >;
-  } & // Group
-  {
+  } & {
+    // Group
     [TGroup in Extract<
       TRelationship["fields"][number],
       | prismic.CustomTypeModelFetchGroupLevel1
@@ -41,8 +41,8 @@ type PickContentRelationshipFieldData<
           PickContentRelationshipFieldData<TGroup, TGroupData, TLang>
         >
       : never;
-  } & // Other fields
-  {
+  } & {
+    // Other fields
     [TFieldKey in Extract<
       TRelationship["fields"][number],
       string
@@ -420,9 +420,11 @@ export interface SkyDiveSliceDefaultPrimary {
     | "2 grape"
     | "3 strawberryLemonade"
     | "4 watermelon"
-    | "5 watermelon",
+    | "5 blackCherry",
     "filled"
   >;
+
+  cardFace: prismic.SelectField<"front" | "back">;
 }
 
 /**

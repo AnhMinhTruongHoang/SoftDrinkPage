@@ -6,9 +6,8 @@ import { Group } from "three";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-
-import FloatingCan from "@/components/FloatingCan";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
+import FloatingCards from "@/components/FloatingCards";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -73,7 +72,7 @@ export default function Scene({}: Props) {
       position-x={isDesktop ? 1 : 0}
       rotation-y={isDesktop ? -0.3 : 0}
     >
-      <FloatingCan flavor="blackCherry" />
+      <FloatingCards />
       <Environment files={"/hdr/lobby.hdr"} environmentIntensity={1.5} />
     </group>
   );

@@ -33,7 +33,6 @@ export default function ViewCanvas({}: Props) {
           fov: 30,
         }}
       >
-        {/* <Perf />   */} {/* show perform*/}
         <Suspense fallback={null}>
           <View.Port />
         </Suspense>
