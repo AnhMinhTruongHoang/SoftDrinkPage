@@ -21,8 +21,8 @@ const FloatingCards = forwardRef<Group, FloatingCardsProps>(
   (
     {
       cardFace = "ZekromFront", // Mặc định dùng texture Zekrom
-      scale = 1, // Kích thước mặc định
-      floatSpeed = 1.5, // Tốc độ lơ lửng mặc định
+      scale = 0.75, // Kích thước mặc định
+      floatSpeed = 4, // Tốc độ lơ lửng mặc định
       rotationIntensity = 1, // Cường độ xoay mặc định
       floatIntensity = 1, // Cường độ lắc/lơ lửng mặc định
       floatingRange = [-0.1, 0.1], // Giới hạn dao động trục Y mặc định
