@@ -14,14 +14,10 @@ const Pikachu: FC<PikachuProps> = ({ slice }) => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="relative h-screen w-screen overflow-hidden bg-green-900"
+      className="relative h-screen w-screen overflow-hidden bg-cover bg-center"
+      style={{ backgroundImage: "url('/images/Pikachubg.jpg')" }}
     >
-      <div>
-        {/* Tiêu đề */}
-        <div className="absolute left-1/2 top-6 z-10 -translate-x-1/2 text-5xl font-bold text-white">
-          <PrismicRichText field={slice.primary.unleash_the_power} />
-        </div>
-      </div>
+      <div>{/* Tiêu đề */}</div>
       {/* Pikachu 3D full màn hình */}
       <Canvas
         camera={{ position: [0, 0, 5], fov: 50 }}
@@ -40,6 +36,9 @@ const Pikachu: FC<PikachuProps> = ({ slice }) => {
           environmentRotation={[0, 3, 0]}
         />
       </Canvas>
+      <div className="text- absolute left-1/2 top-6 z-10 -translate-x-1/2 text-5xl font-bold">
+        <PrismicRichText field={slice.primary.unleash_the_power} />
+      </div>
     </section>
   );
 };
