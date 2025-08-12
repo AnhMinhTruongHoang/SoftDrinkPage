@@ -20,7 +20,7 @@ type FloatingCardsProps = {
 const FloatingCards = forwardRef<Group, FloatingCardsProps>(
   (
     {
-      cardFace = "Front", // Mặc định dùng texture Zekrom
+      cardFace = "Front", // Mặc định dùng texture
       scale = 0.75, // Kích thước mặc định
       floatSpeed = 4, // Tốc độ lơ lửng mặc định
       rotationIntensity = 1, // Cường độ xoay mặc định
@@ -50,7 +50,7 @@ const FloatingCards = forwardRef<Group, FloatingCardsProps>(
           {children}
           {/* Bao thẻ trong một group để xoay */}
           <group rotation={[Math.PI / 2, 0, 0]}>
-            <Cards cardFace={cardFace} scale={scale} />
+            <Cards cardFace={"Front"} scale={scale} />
           </group>
         </Float>
       </group>
