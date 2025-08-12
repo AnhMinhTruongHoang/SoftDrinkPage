@@ -28,8 +28,8 @@ type PickContentRelationshipFieldData<
       TSubRelationship["customtypes"],
       TLang
     >;
-  } & {
-    // Group
+  } & // Group
+  {
     [TGroup in Extract<
       TRelationship["fields"][number],
       | prismic.CustomTypeModelFetchGroupLevel1
@@ -41,8 +41,8 @@ type PickContentRelationshipFieldData<
           PickContentRelationshipFieldData<TGroup, TGroupData, TLang>
         >
       : never;
-  } & {
-    // Other fields
+  } & // Other fields
+  {
     [TFieldKey in Extract<
       TRelationship["fields"][number],
       string
@@ -70,6 +70,7 @@ type ContentRelationshipFieldWithData<
 }[Exclude<TCustomType[number], string>["id"]];
 
 type PageDocumentDataSlicesSlice =
+  | PikachuSlice
   | AlternatingTextSlice
   | CarouselSlice
   | SkyDiveSlice
@@ -393,6 +394,51 @@ type FizziSliceVariation = FizziSliceDefault;
 export type FizziSlice = prismic.SharedSlice<"fizzi", FizziSliceVariation>;
 
 /**
+ * Primary content in *Pikachu → Default → Primary*
+ */
+export interface PikachuSliceDefaultPrimary {
+  /**
+   * Unleash the Power field in *Pikachu → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: pikachu.default.primary.unleash_the_power
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  unleash_the_power: prismic.RichTextField;
+}
+
+/**
+ * Default variation for Pikachu Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type PikachuSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<PikachuSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Pikachu*
+ */
+type PikachuSliceVariation = PikachuSliceDefault;
+
+/**
+ * Pikachu Shared Slice
+ *
+ * - **API ID**: `pikachu`
+ * - **Description**: Pikachu
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type PikachuSlice = prismic.SharedSlice<
+  "pikachu",
+  PikachuSliceVariation
+>;
+
+/**
  * Primary content in *SkyDive → Default → Primary*
  */
 export interface SkyDiveSliceDefaultPrimary {
@@ -420,11 +466,9 @@ export interface SkyDiveSliceDefaultPrimary {
     | "2 grape"
     | "3 strawberryLemonade"
     | "4 watermelon"
-    | "5 blackCherry",
+    | "5 watermelon",
     "filled"
   >;
-
-  cardFace: prismic.SelectField<"front" | "back">;
 }
 
 /**
@@ -495,6 +539,10 @@ declare module "@prismicio/client" {
       FizziSliceDefaultPrimary,
       FizziSliceVariation,
       FizziSliceDefault,
+      PikachuSlice,
+      PikachuSliceDefaultPrimary,
+      PikachuSliceVariation,
+      PikachuSliceDefault,
       SkyDiveSlice,
       SkyDiveSliceDefaultPrimary,
       SkyDiveSliceVariation,

@@ -1,0 +1,28 @@
+{
+  "id": "pikachu",
+  "type": "SharedSlice",
+  "name": "Pikachu",
+  "description": "Pikachu",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "unleash_the_power": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Unleash the Power",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "heading1"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

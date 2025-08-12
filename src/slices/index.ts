@@ -6,5 +6,6 @@ export const components = {
   alternating_text: dynamic(() => import("./AlternatingText")),
   carousel: dynamic(() => import("./Carousel")),
   fizzi: dynamic(() => import("./Hero")),
+  pikachu: dynamic(() => import("./Pikachu")),
   sky_dive: dynamic(() => import("./SkyDive")),
 };
