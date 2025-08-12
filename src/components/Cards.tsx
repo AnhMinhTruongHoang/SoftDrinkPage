@@ -20,7 +20,7 @@ export function Cards({ cardFace = "Front", scale = 1, ...props }: CardProps) {
   // FIX LẬT NGƯỢC TEXTURE
   Object.values(textures).forEach((tex) => {
     tex.flipY = false;
-    tex.colorSpace = THREE.SRGBColorSpace; 
+    tex.colorSpace = THREE.SRGBColorSpace;
   });
 
   const frontTexture = textures[cardFace];

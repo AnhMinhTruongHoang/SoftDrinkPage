@@ -20,7 +20,6 @@ type FloatingCardsProps = {
 const FloatingCards = forwardRef<Group, FloatingCardsProps>(
   (
     {
-      cardFace = "Front", // Mặc định dùng texture
       scale = 0.75, // Kích thước mặc định
       floatSpeed = 4, // Tốc độ lơ lửng mặc định
       rotationIntensity = 1, // Cường độ xoay mặc định
