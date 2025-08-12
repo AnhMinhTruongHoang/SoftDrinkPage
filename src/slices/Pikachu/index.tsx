@@ -1,50 +1,45 @@
+"use client";
+
 import { FC } from "react";
 import { Content } from "@prismicio/client";
-import { SliceComponentProps } from "@prismicio/react";
+import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
+import { Canvas } from "@react-three/fiber";
+import { Center, Environment } from "@react-three/drei";
+import FloatingPikachu from "@/components/FloatingPikachu";
 
-/**
- * Props for `Pikachu`.
- */
 export type PikachuProps = SliceComponentProps<Content.PikachuSlice>;
 
-/**
- * Component for "Pikachu" Slices.
- */
 const Pikachu: FC<PikachuProps> = ({ slice }) => {
   return (
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
+      className="relative h-screen w-screen overflow-hidden bg-green-900"
     >
-      Placeholder component for pikachu (variation: {slice.variation}) slices.
-      <br />
-      <strong>You can edit this slice directly in your code editor.</strong>
-      {/**
-       * 💡 Use Prismic MCP with your code editor
-       *
-       * Get AI-powered help to build your slice components — based on your actual model.
-       *
-       * ▶️ Setup:
-       * 1. Add a new MCP Server in your code editor:
-       *
-       * {
-       *   "mcpServers": {
-       *     "Prismic MCP": {
-       *       "command": "npx",
-       *       "args": ["-y", "@prismicio/mcp-server@latest"]
-       *     }
-       *   }
-       * }
-       *
-       * 2. Select a model optimized for coding (e.g. Claude 3.7 Sonnet or similar)
-       *
-       * ✅ Then open your slice file and ask your code editor:
-       *    "Code this slice"
-       *
-       * Your code editor reads your slice model and helps you code faster ⚡
-       * 🎙️ Give your feedback: https://community.prismic.io/t/help-us-shape-the-future-of-slice-creation/19505
-       * 📚 Documentation: https://prismic.io/docs/ai#code-with-prismics-mcp-server
-       */}
+      <div>
+        {/* Tiêu đề */}
+        <div className="absolute left-1/2 top-6 z-10 -translate-x-1/2 text-5xl font-bold text-white">
+          <PrismicRichText field={slice.primary.unleash_the_power} />
+        </div>
+      </div>
+      {/* Pikachu 3D full màn hình */}
+      <Canvas
+        camera={{ position: [0, 0, 5], fov: 50 }}
+        className="absolute left-0 top-0 h-full w-full"
+      >
+        <ambientLight intensity={0.5} />
+        <directionalLight position={[5, 5, 5]} intensity={0.6} />
+
+        <Center position={[0, -0.2, 0]}>
+          <FloatingPikachu floatIntensity={0.3} rotationIntensity={1} />
+        </Center>
+
+        <Environment
+          files="/hdr/lobby.hdr"
+          environmentIntensity={0.8}
+          environmentRotation={[0, 3, 0]}
+        />
+      </Canvas>
     </section>
   );
 };
