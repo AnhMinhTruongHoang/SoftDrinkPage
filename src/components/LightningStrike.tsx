@@ -1,11 +1,9 @@
-import { Canvas, extend, ReactThreeFiber, useFrame } from "@react-three/fiber";
-import { LightningStrike, RayParameters } from "three-stdlib";
 import { useRef } from "react";
-import { Center, Environment } from "@react-three/drei";
-import FloatingPikachu from "@/components/FloatingPikachu";
+import { useFrame, extend, ReactThreeFiber } from "@react-three/fiber";
+import { LightningStrike, RayParameters } from "three-stdlib";
 import * as THREE from "three";
 
-// Đăng ký LightningStrikeGeometry
+// Khai báo type cho LightningStrikeGeometry
 declare module "@react-three/fiber" {
   interface ThreeElements {
     lightningStrikeGeometry: ReactThreeFiber.Node<
@@ -14,15 +12,16 @@ declare module "@react-three/fiber" {
     >;
   }
 }
+
 extend({ LightningStrikeGeometry: LightningStrike });
 
-const LightningRay = ({
+export default function LightningRay({
   start,
   end,
 }: {
   start: [number, number, number];
   end: [number, number, number];
-}) => {
+}) {
   const ref = useRef<LightningStrike>(null!);
 
   const rayParams: RayParameters = {
@@ -50,34 +49,7 @@ const LightningRay = ({
   return (
     <mesh>
       <lightningStrikeGeometry args={[rayParams]} ref={ref} />
-      <meshBasicMaterial color="#70e0ff" toneMapped={false} />
+      <meshBasicMaterial color="#ffeb3b" toneMapped={false} />
     </mesh>
-  );
-};
-
-export default function PikachuWithLightning() {
-  return (
-    <section
-      className="relative h-screen w-screen overflow-hidden bg-cover bg-center"
-      style={{ backgroundImage: "url('/images/Pikachubg.jpg')" }}
-    >
-      <Canvas
-        camera={{ position: [0, 0, 5], fov: 50 }}
-        className="absolute left-0 top-0 h-full w-full"
-      >
-        <ambientLight intensity={0.5} />
-        <directionalLight position={[5, 5, 5]} intensity={1} />
-        <Center position={[0, -0.2, 0]}>
-          <FloatingPikachu floatIntensity={5} rotationIntensity={5} />
-        </Center>
-        {/* 3 tia sét */}
-        <LightningRay start={[0, 3, 0]} end={[0, 0, 0]} /> {/* Tia giữa */}
-        <LightningRay start={[-1.5, 3, 0.5]} end={[-0.5, 0, 0]} />{" "}
-        {/* Tia trái */}
-        <LightningRay start={[1.5, 3, -0.5]} end={[0.5, 0, 0]} />{" "}
-        {/* Tia phải */}
-        <Environment files="/hdr/lobby.hdr" />
-      </Canvas>
-    </section>
   );
 }

@@ -96,7 +96,7 @@ const Carousel = ({ slice }: CarouselProps): JSX.Element => {
       <WavyCircles className="absolute left-1/2 top-1/2 h-[120vmin] -translate-x-1/2 -translate-y-1/2 text-[#210523]" />
 
       {/* Tiêu đề */}
-      <h2 className="relative text-center text-5xl font-bold">
+      <h2 className="relative text-center text-5xl font-bold ">
         <PrismicText field={slice.primary.heading} />
       </h2>
 
