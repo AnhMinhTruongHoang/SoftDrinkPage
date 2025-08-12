@@ -5,7 +5,7 @@ import * as THREE from "three";
 useGLTF.preload("/Models/Cards/ZekRomGX.glb");
 
 const CardTextures = {
-  ZekromFront: "/labels/CardTextures/CharizadGX.png",
+  Front: "/labels/CardTextures/CharizadGX.png",
 };
 
 export type CardProps = {
@@ -13,17 +13,14 @@ export type CardProps = {
   scale?: number;
 };
 
-export function Cards({
-  cardFace = "ZekromFront",
-  scale = 1,
-  ...props
-}: CardProps) {
+export function Cards({ cardFace = "Front", scale = 1, ...props }: CardProps) {
   const { nodes } = useGLTF("/Models/Cards/ZekRomGX.glb") as any;
   const textures = useTexture(CardTextures);
 
   // FIX LẬT NGƯỢC TEXTURE
   Object.values(textures).forEach((tex) => {
     tex.flipY = false;
+    tex.colorSpace = THREE.SRGBColorSpace; 
   });
 
   const frontTexture = textures[cardFace];
