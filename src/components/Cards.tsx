@@ -5,7 +5,7 @@ import * as THREE from "three";
 useGLTF.preload("/Models/Cards/ZekRomGX.glb");
 
 const CardTextures = {
-  Front: "/labels/cardTextures/CharizadGX.png",
+  Front: "/labels/cardTextures/Zekrom.png",
 };
 
 export type CardProps = {
