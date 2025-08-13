@@ -14,6 +14,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { WavyCircles } from "./WayvyCircle";
 import { Group } from "three";
 import gsap from "gsap";
+import SodaPurchase from "@/components/Modal.PopUp";
 
 // Số vòng xoay khi đổi hương vị
 const SPINS_ON_CHANGE = 8;
@@ -47,6 +48,7 @@ export type CarouselProps = SliceComponentProps<Content.CarouselSlice>;
 const Carousel = ({ slice }: CarouselProps): JSX.Element => {
   const [currentFlavorIndex, setCurrentFlavorIndex] = useState(0); // Chỉ số hương vị hiện tại
   const sodaCanRef = useRef<Group>(null); // Tham chiếu đến object 3D của lon nước
+  const [openModal, SetOpenModal] = useState(false);
 
   // Hàm thay đổi hương vị (kèm theo xoay 3D + đổi màu + cập nhật text)
   function changeFlavor(index: number) {
@@ -84,86 +86,99 @@ const Carousel = ({ slice }: CarouselProps): JSX.Element => {
   }
 
   return (
-    <section
-      data-slice-type={slice.slice_type}
-      data-slice-variation={slice.variation}
-      className="carousel relative grid h-screen grid-rows-[auto,4fr,auto] justify-center overflow-hidden bg-white py-12 text-white"
-    >
-      {/* Background chính */}
-      <div className="background pointer-events-none absolute inset-0 bg-[#710523] opacity-50" />
+    <>
+      <section
+        data-slice-type={slice.slice_type}
+        data-slice-variation={slice.variation}
+        className="carousel relative grid h-screen grid-rows-[auto,4fr,auto] justify-center overflow-hidden bg-white py-12 text-white"
+      >
+        {/* Background chính */}
+        <div className="background pointer-events-none absolute inset-0 bg-[#710523] opacity-50" />
 
-      {/* Sóng trang trí */}
-      <WavyCircles className="absolute left-1/2 top-1/2 h-[120vmin] -translate-x-1/2 -translate-y-1/2 text-[#210523]" />
+        {/* Sóng trang trí */}
+        <WavyCircles className="absolute left-1/2 top-1/2 h-[120vmin] -translate-x-1/2 -translate-y-1/2 text-[#210523]" />
 
-      {/* Tiêu đề */}
-      <h2 className="relative text-center text-5xl font-bold ">
-        <PrismicText field={slice.primary.heading} />
-      </h2>
+        {/* Tiêu đề */}
+        <h2 className="relative text-center text-5xl font-bold">
+          <PrismicText field={slice.primary.heading} />
+        </h2>
 
-      {/* Khu vực chính */}
-      <div className="grid grid-cols-[auto,auto,auto] items-center gap-8">
-        {/* Nút chuyển trái */}
-        <button
-          onClick={() => changeFlavor(currentFlavorIndex - 1)}
-          className="z-20 rounded-full bg-white/10 p-3 transition hover:bg-white/20"
-          aria-label="Previous flavor"
-        >
-          <ArrowLeft className="h-8 w-8 text-yellow-400" />
-        </button>
+        {/* Khu vực chính */}
+        <div className="grid grid-cols-[auto,auto,auto] items-center gap-8">
+          {/* Nút chuyển trái */}
+          <button
+            onClick={() => changeFlavor(currentFlavorIndex - 1)}
+            className="z-20 rounded-full bg-white/10 p-3 transition hover:bg-white/20"
+            aria-label="Previous flavor"
+          >
+            <ArrowLeft className="h-8 w-8 text-yellow-400" />
+          </button>
 
-        {/* Vùng hiển thị lon nước 3D */}
-        <View className="aspect-square h-[70vmin] min-h-40">
-          <Center position={[0, 0, 1.5]}>
-            <FloatingCan
-              ref={sodaCanRef}
-              floatIntensity={0.3}
-              rotationIntensity={1}
-              flavor={FLAVORS[currentFlavorIndex].flavor}
+          {/* Vùng hiển thị lon nước 3D */}
+          <View className="aspect-square h-[70vmin] min-h-40">
+            <Center position={[0, 0, 1.5]}>
+              <FloatingCan
+                ref={sodaCanRef}
+                floatIntensity={0.3}
+                rotationIntensity={1}
+                flavor={FLAVORS[currentFlavorIndex].flavor}
+              />
+            </Center>
+            <Environment
+              files="/hdr/lobby.hdr"
+              environmentIntensity={0.6}
+              environmentRotation={[0, 3, 0]}
             />
-          </Center>
-          <Environment
-            files="/hdr/lobby.hdr"
-            environmentIntensity={0.6}
-            environmentRotation={[0, 3, 0]}
+            {/* Directional Light – chỉnh riêng cho Pikachu */}
+            {[
+              "pikachu",
+              "charizar",
+              "aurora",
+              "celebi",
+              "pixel",
+              "blackPink",
+            ].includes(FLAVORS[currentFlavorIndex].flavor!) ? (
+              <directionalLight intensity={1} position={[0, 1.5, 1]} />
+            ) : (
+              <directionalLight intensity={6} position={[0, 1, 1]} />
+            )}
+          </View>
+
+          {/* Nút chuyển phải */}
+          <button
+            onClick={() => changeFlavor(currentFlavorIndex + 1)}
+            className="z-20 rounded-full bg-white/10 p-3 transition hover:bg-white/20"
+            aria-label="Next flavor"
+          >
+            <ArrowRight className="h-8 w-8 text-yellow-400" />
+          </button>
+        </div>
+
+        {/* Hiển thị tên hương vị và giá */}
+        <div className="text-area relative mx-auto mt-6 text-center">
+          {/* Tên flavor */}
+          <div className="text-wrapper text-4xl font-semibold tracking-tight">
+            <p>{FLAVORS[currentFlavorIndex].name}</p>
+          </div>
+
+          {/* Giá sản phẩm */}
+
+          <div
+            onClick={() => SetOpenModal(true)}
+            className="mt-3 inline-block cursor-pointer rounded-full bg-white/90 px-6 py-2 text-xl font-bold text-[#710523] shadow-md backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:bg-white hover:shadow-lg"
+          >
+            <PrismicRichText field={slice.primary.price_copy} />
+          </div>
+        </div>
+        <div>
+          <SodaPurchase
+            flavor={FLAVORS}
+            openModal={openModal}
+            SetOpenModal={SetOpenModal}
           />
-          {/* Directional Light – chỉnh riêng cho Pikachu */}
-          {[
-            "pikachu",
-            "charizar",
-            "aurora",
-            "celebi",
-            "pixel",
-            "blackPink",
-          ].includes(FLAVORS[currentFlavorIndex].flavor!) ? (
-            <directionalLight intensity={1} position={[0, 1.5, 1]} />
-          ) : (
-            <directionalLight intensity={6} position={[0, 1, 1]} />
-          )}
-        </View>
-
-        {/* Nút chuyển phải */}
-        <button
-          onClick={() => changeFlavor(currentFlavorIndex + 1)}
-          className="z-20 rounded-full bg-white/10 p-3 transition hover:bg-white/20"
-          aria-label="Next flavor"
-        >
-          <ArrowRight className="h-8 w-8 text-yellow-400" />
-        </button>
-      </div>
-
-      {/* Hiển thị tên hương vị và giá */}
-      <div className="text-area relative mx-auto mt-6 text-center">
-        {/* Tên flavor */}
-        <div className="text-wrapper text-4xl font-semibold tracking-tight">
-          <p>{FLAVORS[currentFlavorIndex].name}</p>
         </div>
-
-        {/* Giá sản phẩm */}
-        <div className="mt-3 inline-block rounded-full bg-white/90 px-6 py-2 text-xl font-bold text-[#710523] shadow-md backdrop-blur-sm">
-          <PrismicRichText field={slice.primary.price_copy} />
-        </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 
