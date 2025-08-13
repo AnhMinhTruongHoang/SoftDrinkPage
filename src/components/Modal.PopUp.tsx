@@ -1,4 +1,9 @@
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
+import {
+  NotificationContainer,
+  NotificationManager,
+} from "react-notifications";
+import "react-notifications/lib/notifications.css";
 
 interface Flavor {
   flavor?: string;
@@ -39,13 +44,25 @@ export default function SodaPurchase({
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+
     console.log({
       name,
       address,
       phone,
       sodas: selectedSodas.map((s) => s.name),
     });
-    SetOpenModal(false);
+    if (selectedSodas.length === 0) {
+      NotificationManager.error(
+        "Please Select Product",
+        "Product not Selected",
+      );
+    } else {
+      NotificationManager.success("Thank you for your purchase", "Success !");
+      setName("");
+      setAddress("");
+      setPhone("");
+      SetOpenModal(false);
+    }
   };
 
   return (
@@ -176,6 +193,7 @@ export default function SodaPurchase({
           </div>
         </div>
       )}
+      <NotificationContainer />
     </>
   );
 }
