@@ -90,7 +90,7 @@ const Carousel = ({ slice }: CarouselProps): JSX.Element => {
       <section
         data-slice-type={slice.slice_type}
         data-slice-variation={slice.variation}
-        className="carousel relative grid h-screen grid-rows-[auto,4fr,auto] justify-center overflow-hidden bg-white py-12 text-white"
+        className="carousel relative grid h-screen w-screen grid-rows-[auto,4fr,auto] justify-center overflow-hidden bg-white py-12 text-white"
       >
         {/* Background chính */}
         <div className="background pointer-events-none absolute inset-0 bg-[#710523] opacity-50" />
@@ -170,14 +170,12 @@ const Carousel = ({ slice }: CarouselProps): JSX.Element => {
             <PrismicRichText field={slice.primary.price_copy} />
           </div>
         </div>
-        <div>
-          <SodaPurchase
-            flavor={FLAVORS}
-            openModal={openModal}
-            SetOpenModal={SetOpenModal}
-          />
-        </div>
       </section>
+      <SodaPurchase
+        flavor={FLAVORS}
+        openModal={openModal}
+        SetOpenModal={SetOpenModal}
+      />
     </>
   );
 };
