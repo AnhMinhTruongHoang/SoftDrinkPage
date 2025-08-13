@@ -6,9 +6,15 @@ type Props = {
   buttonLink: LinkField;
   buttonText: string | null;
   className?: string;
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void; // thêm onClick
 };
 
-export default function Button({ buttonLink, buttonText, className }: Props) {
+export default function Button({
+  buttonLink,
+  buttonText,
+  className,
+  onClick,
+}: Props) {
   return (
     <PrismicNextLink
       className={clsx(
@@ -16,6 +22,7 @@ export default function Button({ buttonLink, buttonText, className }: Props) {
         className,
       )}
       field={buttonLink}
+      onClick={onClick} 
     >
       {buttonText}
     </PrismicNextLink>

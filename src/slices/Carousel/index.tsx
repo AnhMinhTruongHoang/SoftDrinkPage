@@ -90,7 +90,7 @@ const Carousel = ({ slice }: CarouselProps): JSX.Element => {
       <section
         data-slice-type={slice.slice_type}
         data-slice-variation={slice.variation}
-        className="carousel relative grid h-screen w-screen grid-rows-[auto,4fr,auto] justify-center overflow-hidden bg-white py-12 text-white"
+        className="carousel overflow-x: hidden; relative grid h-screen w-screen grid-rows-[auto,4fr,auto] justify-center overflow-hidden bg-white py-12 text-white"
       >
         {/* Background chính */}
         <div className="background pointer-events-none absolute inset-0 bg-[#710523] opacity-50" />
@@ -167,8 +167,11 @@ const Carousel = ({ slice }: CarouselProps): JSX.Element => {
             onClick={() => SetOpenModal(true)}
             className="mt-3 inline-block cursor-pointer rounded-full bg-white/90 px-6 py-2 text-xl font-bold text-[#710523] shadow-md backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:bg-white hover:shadow-lg"
           >
-            <PrismicRichText field={slice.primary.price_copy} />
+            Buy now !
           </div>
+          <span className="text-green-600">
+            <PrismicRichText field={slice.primary.price_copy} />
+          </span>
         </div>
       </section>
       <SodaPurchase

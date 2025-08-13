@@ -43,6 +43,15 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
   const ready = useStore((state) => state.ready);
   const isDesktop = useMediaQuery("(min-width: 768px)", true);
 
+  const scrollToLastSlice = () => {
+    // Lấy tất cả các phần tử slice
+    const slices = document.querySelectorAll("[data-slice-type]");
+    if (slices.length > 0) {
+      const lastSlice = slices[slices.length - 1] as HTMLElement;
+      lastSlice.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   useGSAP(
     () => {
       if (!ready && isDesktop) return;
@@ -120,10 +129,10 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
     <Bounded
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="hero opacity-0"
+      className="hero hidden; opacity-0"
     >
       {isDesktop && (
-        <View className="hero-scene pointer-events-none sticky top-0 z-50 -mt-[100vh] hidden h-screen w-screen md:block">
+        <View className="hero-scene hidden; pointer-events-none sticky top-0 z-50 -mt-[100vh] hidden h-screen w-screen md:block">
           <Scene />
           <Bubbles count={300} speed={2} repeat={true} />
         </View>
@@ -132,7 +141,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
       <div className="grid">
         <div className="grid h-screen place-items-center">
           <div className="grid auto-rows-min place-items-center text-center">
-            <h1 className="hero-header mt-20 whitespace-pre-line text-5xl font-black uppercase leading-[0.8] text-orange-500 sm:text-6xl md:text-[8rem] lg:text-[13rem]">
+            <h1 className="hero-header hidden; mt-20 whitespace-pre-line text-5xl font-black uppercase leading-[0.8] text-orange-500 sm:text-6xl md:text-[8rem] lg:text-[13rem]">
               {/* Tách từng dòng của tiêu đề chính ra thành các span */}
               {"Soft\nDr/nks/X".split("\n").map((line, index) => (
                 <span key={index} className="block">
@@ -150,11 +159,15 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
               buttonLink={slice.primary.button_link}
               buttonText={slice.primary.button_text}
               className="hero-button mt-12"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToLastSlice();
+              }}
             />
           </div>
         </div>
 
-        <div className="text-side relative z-[80] grid h-screen items-center gap-4 md:grid-cols-2">
+        <div className="text-side hidden; relative z-[80] grid h-screen items-center gap-4 md:grid-cols-2">
           <PrismicNextImage
             className="w-full md:hidden"
             field={slice.primary.cans_image}

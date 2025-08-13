@@ -1,0 +1,10 @@
+/* Ẩn overflow ngang toàn bộ website */
+html,
+body {
+  overflow-x: hidden;
+}
+
+/* Nếu muốn an toàn hơn, chỉ ẩn với các slice */
+.prismic-slice {
+  overflow-x: hidden;
+}
