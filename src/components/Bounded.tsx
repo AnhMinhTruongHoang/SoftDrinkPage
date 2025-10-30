@@ -4,20 +4,30 @@ type BoundedProps = {
   as?: React.ElementType;
   className?: string;
   children: React.ReactNode;
+  full?: boolean;
 };
 
 export const Bounded = ({
   as: Comp = "section",
   className,
   children,
+  full = false,
   ...restProps
 }: BoundedProps) => {
   return (
     <Comp
-      className={clsx("px-4 first:pt-10 md:px-6", className)}
+      className={clsx(
+        full ? "" : "px-4 first:pt-10 md:px-6", // ⬅️ bỏ padding khi full
+        className,
+      )}
       {...restProps}
     >
-      <div className="mx-auto flex w-full max-w-7xl flex-col items-center">
+      <div
+        className={clsx(
+          "flex w-full flex-col items-center",
+          full ? "" : "mx-auto max-w-7xl",
+        )}
+      >
         {children}
       </div>
     </Comp>

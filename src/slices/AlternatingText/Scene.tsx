@@ -7,7 +7,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
-import { Cards } from "@/components/Cards";
 import FloatingCards from "@/components/FloatingCards";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
