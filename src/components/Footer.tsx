@@ -6,11 +6,11 @@ type Props = {};
 
 export default function Footer({}: Props) {
   return (
-    <footer className="bg-[#FEE832] text-[#FE6334]">
-      <div className="relative mx-auto flex w-full w-screen max-w-4xl justify-center px-0 py-0">
-        <FizziLogo />
-        <div className="absolute right-24 top-0 size-2 origin-center -translate-y-10 md:size-36 md:-translate-y-20">
-          <CircleText />
+    <footer className="relative flex h-[100px] w-screen items-center justify-center overflow-hidden bg-[#FEE832] text-[#FE6334]">
+      <div className="relative flex w-full max-w-[1400px] justify-center">
+        <FizziLogo className="scale-90 md:scale-100" />
+        <div className="absolute right-12 top-0 size-16 -translate-y-8 md:size-24 md:-translate-y-12">
+          <CircleText className="size-15 mt-11" />
         </div>
       </div>
     </footer>

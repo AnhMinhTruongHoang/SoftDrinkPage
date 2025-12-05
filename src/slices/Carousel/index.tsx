@@ -165,7 +165,7 @@ const Carousel = ({ slice }: CarouselProps): JSX.Element => {
 
           <div
             onClick={() => SetOpenModal(true)}
-            className="mt-3 inline-block cursor-pointer rounded-full bg-white/90 px-6 py-2 text-xl font-bold text-[#710523] shadow-md backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:bg-white hover:shadow-lg"
+            className="mt-0.5 inline-block cursor-pointer rounded-full bg-white/90 px-6 py-2 text-xl font-bold text-[#710523] shadow-md backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:bg-white hover:shadow-lg"
           >
             Buy now !
           </div>
