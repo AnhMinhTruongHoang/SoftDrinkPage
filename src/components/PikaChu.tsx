@@ -6,7 +6,7 @@ type PikachuModelProps = JSX.IntrinsicElements["group"] & {
 };
 
 export default function PikachuModel({
-  scale = 1,
+  scale = 1,  
   ...props
 }: PikachuModelProps) {
   const { scene } = useGLTF("/Models/Figures/PikachuFigure.glb");
