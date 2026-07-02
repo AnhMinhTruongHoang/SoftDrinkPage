@@ -5,6 +5,10 @@ import { repositoryName } from "@/prismicio";
 import Header from "@/components/Header";
 import ViewCanvas from "@/components/ViewCanvas";
 
+export const metadata = {
+  title: "SoftDrinkPage",
+};
+
 const alpino = localFont({
   src: "../Assets/fonts/Alpino-Variable.woff2",
   display: "swap",
