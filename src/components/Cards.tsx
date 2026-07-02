@@ -1,35 +1,19 @@
 "use client";
-import { useGLTF, useTexture } from "@react-three/drei";
-import * as THREE from "three";
 
-useGLTF.preload("/Models/Cards/ZekRomGX.glb");
+import { useGLTF } from "@react-three/drei";
 
-const CardTextures = {
-  Front: "/labels/cardTextures/Zekrom.png",
-};
+useGLTF.preload("/Models/Cards/Tagteam.glb");
 
 export type CardProps = {
-  cardFace?: keyof typeof CardTextures;
   scale?: number;
 };
 
-export function Cards({ cardFace = "Front", scale = 1, ...props }: CardProps) {
-  const { nodes } = useGLTF("/Models/Cards/ZekRomGX.glb") as any;
-  const textures = useTexture(CardTextures);
-
-  // FIX LẬT NGƯỢC TEXTURE
-  Object.values(textures).forEach((tex) => {
-    tex.flipY = false;
-    tex.colorSpace = THREE.SRGBColorSpace;
-  });
-
-  const frontTexture = textures[cardFace];
+export function Cards({ scale = 1, ...props }: CardProps) {
+  const { scene } = useGLTF("/Models/Cards/Tagteam.glb") as any;
 
   return (
     <group {...props} dispose={null} scale={scale}>
-      <mesh castShadow receiveShadow geometry={nodes.font.geometry}>
-        <meshStandardMaterial map={frontTexture} side={THREE.FrontSide} />
-      </mesh>
+      <primitive object={scene} />
     </group>
   );
 }

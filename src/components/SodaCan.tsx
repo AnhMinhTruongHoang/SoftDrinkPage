@@ -9,17 +9,16 @@ useGLTF.preload("/Models/Cans/Soda-can.gltf");
 
 // Định nghĩa đường dẫn tới texture (nhãn lon) tương ứng với từng hương vị
 const flavorTextures = {
-  lemonLime: "/labels/lemon-lime.png",
-  grape: "/labels/grape.png",
-  blackCherry: "/labels/cherry.png",
-  strawberryLemonade: "/labels/strawberry.png",
-  watermelon: "/labels/watermelon.png",
-  pikachu: "/labels/Pikachu.lemonade.png",
-  charizar: "/labels/Charizar.Soda.png",
-  aurora: "/labels/Aurora.Soda.png",
-  celebi: "/labels/Celebi.soda.png",
-  pixel: "/labels/Pixel.soda.png",
-  blackPink: "/labels/Black.Pink.png",
+  lemonLime: "images/labels/lemon-lime.png",
+  grape: "images/labels/grape.png",
+  blackCherry: "images/labels/cherry.png",
+  strawberryLemonade: "images/labels/strawberry.png",
+  watermelon: "images/labels/watermelon.png",
+  pikachu: "images/labels/Pikachu.lemonade.png",
+  charizar: "images/labels/Charizar.Soda.png",
+  aurora: "images/labels/Aurora.Soda.png",
+  celebi: "images/labels/Celebi.soda.png",
+  pixel: "images/labels/Pixel.soda.png",
 };
 
 // Tạo vật liệu kim loại dùng cho phần thân và nắp lon
@@ -58,7 +57,6 @@ export function SodaCan({
   labels.aurora.flipY = false;
   labels.celebi.flipY = false;
   labels.pixel.flipY = false;
-  labels.blackPink.flipY = false;
 
   // Lấy texture tương ứng với flavor được chọn
   const label = labels[flavor];

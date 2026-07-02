@@ -27,9 +27,6 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "pikachu": {
-              "type": "SharedSlice"
-            },
             "alternating_text": {
               "type": "SharedSlice"
             },
