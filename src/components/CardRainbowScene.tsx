@@ -1,6 +1,6 @@
 "use client";
 
-import { Environment, Sparkles } from "@react-three/drei";
+import { Environment, Sparkles, Stars } from "@react-three/drei";
 import { useMemo } from "react";
 import { CatmullRomCurve3, DoubleSide, Vector3 } from "three";
 import FloatingCards from "@/components/FloatingCards";
@@ -81,17 +81,21 @@ export default function CardRainbowScene() {
       <PokemonSlots />
 
       <Sparkles
-        count={70}
-        scale={[3.8, 2.5, 1]}
-        position={[0, 0.2, -0.5]}
-        size={3}
-        speed={0.25}
+        count={150}
+        scale={[4.8, 2.8, 0.8]}
+        position={[0, 0.35, -0.6]}
+        size={6}
+        speed={1.2}
+        color="#ffffff"
+        opacity={1}
       />
+
+      <Stars radius={50} depth={50} count={3000} factor={4} fade />
 
       <group position={[0, -0.3, 0.6]} rotation={[0, 0, -0.1]}>
         <FloatingCards
           scale={0.85}
-          floatSpeed={2}
+          floatSpeed={8}
           rotationIntensity={0.15}
           floatIntensity={0.25}
           floatingRange={[-0.04, 0.04]}
